@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
 {
     public Light sunlight;
     public Light moonLight;
+    public Light redLight;
     public Light bulbLight;
     public float nightTime;
     public float totalTime;
@@ -50,9 +51,15 @@ public class Timer : MonoBehaviour
             if(moonLight.intensity < 5.0f){
                 moonLight.intensity += 0.05f;
             }
+            if(redLight.intensity < 2.0f){
+                redLight.intensity += 0.02f;
+            }
         }else{
             if(moonLight.intensity > 0.0f){
                 moonLight.intensity -= 0.05f;
+            }
+            if(redLight.intensity < 0.0f){
+                redLight.intensity -= 0.02f;
             }
         }
 

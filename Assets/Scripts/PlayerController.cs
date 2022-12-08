@@ -16,6 +16,14 @@ public class PlayerController : MonoBehaviour
     private bool isWalking;
 
 
+    public void finishWorking(){
+        isWorking = false;
+    }
+
+    public bool checkWorking(){
+        return isWorking;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

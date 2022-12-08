@@ -7,6 +7,7 @@ public class EatSoul : MonoBehaviour
     private BoxCollider eatCollider;
     private MonsterBody monsterBody;
     private Timer timer;
+    private PlayerController player;
     public float holdingTime;
 
     // Start is called before the first frame update
@@ -15,14 +16,16 @@ public class EatSoul : MonoBehaviour
         eatCollider = GetComponent<BoxCollider>();
         monsterBody = transform.parent.gameObject.GetComponent<MonsterBody>();
         timer = GameObject.Find("GameController").GetComponent<Timer>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
         holdingTime = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(holdingTime > 5.0f){
+        if(holdingTime > 3.0f){
             monsterBody.state = "dead";
+            player.finishWorking();
         }
     }
     
@@ -30,8 +33,7 @@ public class EatSoul : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if(timer.isDay){
             if(other.tag == "Player"){
-                Debug.Log(Input.GetKey(KeyCode.X));
-                if(Input.GetKey(KeyCode.X)) holdingTime += Time.deltaTime;
+                if(player.checkWorking()) holdingTime += Time.deltaTime;
                 else holdingTime = 0.0f;
             }
         }

@@ -17,8 +17,6 @@ public class MonsterBody : MonoBehaviour
     // collider
     private BoxCollider boxCollider;
     private SphereCollider sphereCollider;
-    // monster Light
-    public GameObject monsterLight;
 
     // set random time left to state change
     void setRandomTimeLeft(){
@@ -106,14 +104,6 @@ public class MonsterBody : MonoBehaviour
             }
         }
 
-        // light
-        monsterLight.transform.position = new Vector3(transform.position.x, transform.position.y-1.02f, transform.position.z-1.23f);
-        if(!timer.isDay && monsterLight.GetComponent<Light>().intensity < 2.0f){
-            monsterLight.GetComponent<Light>().intensity += 0.05f;
-        }
-        else if(timer.isDay && monsterLight.GetComponent<Light>().intensity > 0.0f){
-            monsterLight.GetComponent<Light>().intensity -= 0.05f;
-        }
     }
 
     // scream
