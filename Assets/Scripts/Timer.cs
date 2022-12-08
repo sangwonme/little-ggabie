@@ -5,7 +5,8 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public Light sunlight;
-    public Light bulblight;
+    public Light moonLight;
+    public Light bulbLight;
     public float nightTime;
     public float totalTime;
     public bool isDay = true;
@@ -35,23 +36,35 @@ public class Timer : MonoBehaviour
 
         // sun light set
         if(isDay){
-            if(sunlight.intensity < 0.8f){
-                sunlight.intensity += 0.008f;
+            if(sunlight.intensity < 10.0f){
+                sunlight.intensity += 0.1f;
             }
         }else{
             if(sunlight.intensity > 0.0f){
-                sunlight.intensity -= 0.008f;
+                sunlight.intensity -= 0.1f;
             }
         }
         
-        // bulb light set
+        // moon light set
         if(!isDay){
-            if(bulblight.intensity < 5.0f){
-                bulblight.intensity += 0.05f;
+            if(moonLight.intensity < 5.0f){
+                moonLight.intensity += 0.05f;
             }
         }else{
-            if(bulblight.intensity > 0.0f){
-                bulblight.intensity -= 0.05f;
+            if(moonLight.intensity > 0.0f){
+                moonLight.intensity -= 0.05f;
+            }
+        }
+
+        // bulb light set
+        if(isDay && sunlight.intensity > 5.0f){
+            if(bulbLight.intensity > 0.0f){
+                bulbLight.intensity -= 0.07f;
+            }
+        }
+        else if(!isDay && moonLight.intensity > 2.5f){
+            if(bulbLight.intensity < 7.0f){
+                bulbLight.intensity += 0.07f;
             }
         }
     }
