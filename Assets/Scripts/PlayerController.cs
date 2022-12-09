@@ -36,10 +36,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void setWorkingDirection(float monZ){
-        Debug.Log(monZ);
-        Debug.Log(gameObject.transform.position.z);
         float delta = monZ - gameObject.transform.position.z;
-        Debug.Log(delta / Mathf.Abs(delta));
         animator.SetFloat("WorkVertical", delta / Mathf.Abs(delta));
     }
 

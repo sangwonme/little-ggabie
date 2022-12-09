@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UIClock : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class UIClock : MonoBehaviour
     private float timeLeft;
     private float totalTime;
     private RectTransform clockNeedle;
-    private string dayText;
+    public TMP_Text dayText;
 
 
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class UIClock : MonoBehaviour
         // ui asset
         clockNeedle = GameObject.Find("ClockNeedle").GetComponent<RectTransform>();
         // text
-        dayText = "Day 1";
+        dayText.text = "Day 1";
     }
 
     // check timeleft
@@ -37,15 +38,14 @@ public class UIClock : MonoBehaviour
         
     }
 
-    // show day count
-    void setText(){
-
+    void updateDate(){
+        dayText.text = "D-" + timer.dayCount.ToString();
     }
-
 
     // Update is called once per frame
     void Update()
     {
         setTimeNeedle();
+        updateDate();
     }
 }
