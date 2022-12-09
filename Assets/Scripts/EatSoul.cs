@@ -24,6 +24,7 @@ public class EatSoul : MonoBehaviour
     void Update()
     {
         if(holdingTime > 3.0f){
+            Destroy(transform.parent.gameObject.transform.parent.gameObject);
             monsterBody.state = "dead";
             player.finishWorking();
         }
@@ -33,8 +34,10 @@ public class EatSoul : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if(timer.isDay){
             if(other.tag == "Player"){
-                if(player.checkWorking()) holdingTime += Time.deltaTime;
-                else holdingTime = 0.0f;
+                if(gameObject == player.getClosestMonster()){
+                    if(player.checkWorking()) holdingTime += Time.deltaTime;
+                    else holdingTime = 0.0f;
+                }
             }
         }
     }

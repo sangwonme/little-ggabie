@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool isPlaying;
     private bool isWalking;
 
+    private GameObject closestMonster;
 
     public void finishWorking(){
         isWorking = false;
@@ -22,6 +24,38 @@ public class PlayerController : MonoBehaviour
 
     public bool checkWorking(){
         return isWorking;
+    }
+
+    public GameObject getClosestMonster(){
+        return closestMonster;
+    }
+
+    private Collider checkClosestMonster(){
+        // get all close monsters
+        Collider[] closeColliders = Physics.OverlapSphere(transform.position, 5.0f);
+        Collider[] enemyColliders = Array.FindAll(closeColliders, c => c.tag == "Flower");
+        // find closest
+        float bestDistance = 99999.0f;
+        Collider closestMonsterCol = null;
+        foreach (Collider enemy in enemyColliders)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < bestDistance)
+            {
+                bestDistance = distance;
+                closestMonsterCol = enemy;
+            }
+        }
+        return closestMonsterCol;
+    }
+
+    private void OnTriggerStay(Collider other) {
+        if(other.tag == "Flower"){
+            if(other == checkClosestMonster()){
+                closestMonster = other.gameObject;
+                Debug.Log(closestMonster.transform.position);
+            }
+        }
     }
 
     // Start is called before the first frame update

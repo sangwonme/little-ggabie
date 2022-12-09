@@ -58,7 +58,7 @@ public class Timer : MonoBehaviour
             if(moonLight.intensity > 0.0f){
                 moonLight.intensity -= 0.05f;
             }
-            if(redLight.intensity < 0.0f){
+            if(redLight.intensity > 0.0f){
                 redLight.intensity -= 0.02f;
             }
         }
