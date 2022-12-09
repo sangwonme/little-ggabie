@@ -60,13 +60,6 @@ public class MonsterBody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // dead
-        if(state == "dead"){
-            boxCollider.enabled = false;
-            sphereCollider.enabled = false;
-            sprite.enabled = false;
-        }
-
         // box collider
         boxCollider.enabled = !(timer.isDay);
 

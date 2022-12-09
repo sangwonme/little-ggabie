@@ -18,7 +18,7 @@ public class MonsterGeneration : MonoBehaviour
     Vector3 initPos(){
         float x = Random.Range(23.8f, 34.9f);
         float z = Random.Range(15f, 25f);
-        return new Vector3(x, 2.3f, z);
+        return new Vector3(x, 0.38f, z);
     }
 
     void setSpawnPeriod(){
