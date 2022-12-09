@@ -35,6 +35,7 @@ public class EatSoul : MonoBehaviour
         // turn off ui when night
         if(!timer.isDay){
             ui.setUIKey(false);
+            player.setWorkable(false);
             ui.setUIMission(false);
         }
 
@@ -54,6 +55,8 @@ public class EatSoul : MonoBehaviour
         if(timer.isDay){
             if(other.tag == "Player"){
                 ui.setUIKey(holdingTime == 0.0f && gameObject == player.getClosestMonster());
+                player.setWorkable(true);
+                player.setWorkingDirection(transform.position.z - 1.05f);
                 if(gameObject == player.getClosestMonster()){
                     if(player.checkWorking()) holdingTime += Time.deltaTime;
                     else holdingTime = 0.0f;
@@ -65,6 +68,7 @@ public class EatSoul : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if(other.tag == "Player"){
             ui.setUIKey(false);
+            player.setWorkable(false);
             holdingTime = 0.0f;
         }
     }

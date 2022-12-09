@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool isWorking;
     private bool isPlaying;
     private bool isWalking;
+    private bool workable;
 
     private GameObject closestMonster;
 
@@ -26,8 +27,20 @@ public class PlayerController : MonoBehaviour
         return isWorking;
     }
 
+    public void setWorkable(bool turn){
+        workable = turn;
+    }
+
     public GameObject getClosestMonster(){
         return closestMonster;
+    }
+
+    public void setWorkingDirection(float monZ){
+        Debug.Log(monZ);
+        Debug.Log(gameObject.transform.position.z);
+        float delta = monZ - gameObject.transform.position.z;
+        Debug.Log(delta / Mathf.Abs(delta));
+        animator.SetFloat("WorkVertical", delta / Mathf.Abs(delta));
     }
 
     private Collider checkClosestMonster(){
@@ -53,7 +66,6 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Flower"){
             if(other == checkClosestMonster()){
                 closestMonster = other.gameObject;
-                Debug.Log(closestMonster.transform.position);
             }
         }
     }
@@ -61,6 +73,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        workable = false;
         isWorking = false;
         isPlaying = false;
         isWalking = false;
@@ -74,7 +87,13 @@ public class PlayerController : MonoBehaviour
         moveInput.y = Input.GetAxis("Vertical");
         moveInput.Normalize();
 
-        if(Input.GetKeyDown(KeyCode.Z)){
+        // cannot work
+        if(!workable){
+            isWorking = false;
+        }
+
+        // key control
+        if(workable && Input.GetKeyDown(KeyCode.Z)){
             isWorking = !isWorking;
             isPlaying = false;
             isWalking = false;

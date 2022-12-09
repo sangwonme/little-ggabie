@@ -13,7 +13,6 @@ public class UIMonster : MonoBehaviour
         uiKey.SetActive(turn);
     }
 
-
     public void setUIMission(bool turn){
         uiMission.SetActive(turn);
     }
