@@ -33,7 +33,6 @@ public class UIClock : MonoBehaviour
     void setTimeNeedle(){
         updateTimeLeft();
         float neeldeAng = (timeLeft/totalTime) * (360);
-        // clockNeedle.Rotate(new Vector3(0, 0, neeldeAng));
         clockNeedle.rotation = Quaternion.Euler(new Vector3(0, 0, neeldeAng+1));
         
     }

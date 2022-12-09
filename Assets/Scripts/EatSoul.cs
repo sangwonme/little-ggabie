@@ -9,11 +9,13 @@ public class EatSoul : MonoBehaviour
     private UIMonster ui;
     private Timer timer;
     private PlayerController player;
+    private Inventory inven;
     public float holdingTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        inven = GameObject.Find("GameController").GetComponent<Inventory>();
         eatCollider = GetComponent<BoxCollider>();
         monsterBody = transform.parent.gameObject.GetComponent<MonsterBody>();
         ui = transform.parent.gameObject.GetComponent<UIMonster>();
@@ -30,6 +32,7 @@ public class EatSoul : MonoBehaviour
         if(holdingTime > 3.0f){
             Destroy(transform.parent.gameObject.transform.parent.gameObject);
             player.finishWorking();
+            inven.earnFlower();
         }
 
         // turn off ui when night

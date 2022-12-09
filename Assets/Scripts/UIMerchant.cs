@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UIMerchant : MonoBehaviour
 {
-    private GameObject uiKey;
-    private GameObject uiShop;
+    public GameObject uiKey;
+    public GameObject uiShop;
 
     public void setUIKey(bool turn){
         uiKey.SetActive(turn);
@@ -30,7 +30,5 @@ public class UIMerchant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        uiKey = gameObject.transform.GetChild(0).gameObject;
-        uiShop = GameObject.Find("ShopUI");
     }
 }
