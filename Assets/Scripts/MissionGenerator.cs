@@ -7,6 +7,7 @@ public class MissionGenerator : MonoBehaviour
     public Vector2 coolTimeRange;
     public GameObject missionPrefab;
     private Transform[] missions;
+    private int missionNum;
     private float coolTime;
 
     private float timeCount;
@@ -26,6 +27,10 @@ public class MissionGenerator : MonoBehaviour
 
     private void getAllMissions(){
         missions = transform.GetComponentsInChildren<Transform>();
+        missionNum = 0;
+        foreach(Transform mission in missions){
+            missionNum += (mission.tag == "Mission") ? 1 : 0;
+        }
     }
 
     private void updateMissionPos(){
@@ -42,6 +47,7 @@ public class MissionGenerator : MonoBehaviour
     void Start()
     {
         resetCoolTime();
+        missionNum = 0;
     }
 
     // Update is called once per frame
@@ -52,7 +58,9 @@ public class MissionGenerator : MonoBehaviour
 
         if(timeCount > coolTime){
             resetCoolTime();
-            giveNewMission();
+            if(missionNum < 9){
+                giveNewMission();
+            }
         }
     }
 }
