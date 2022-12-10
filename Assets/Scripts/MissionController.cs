@@ -83,5 +83,10 @@ public class MissionController : MonoBehaviour
 
         // update timebar
         timeBar.sizeDelta = new Vector2((remainingTime/missionTime)*142f, 48f);
+
+        // destroy
+        if(remainingTime <= 0.0f){
+            Destroy(gameObject);
+        }
     }
 }

@@ -13,6 +13,19 @@ public class MissionGenerator : MonoBehaviour
     private float timeCount;
 
 
+    // return priory mission of given baby, if doesn't exist return "none"
+    public string getPrioryMission(int babyIdx){
+        getAllMissions();
+        for(int i = 0; i < missions.Length; i++){
+            if(missions[i].tag == "Mission"){
+                if(missions[i].GetComponent<MissionController>().getBabyIdx() == babyIdx){
+                    return missions[i].GetComponent<MissionController>().getMissionType();
+                }
+            }
+        }
+        return "none";
+    }
+
     private void resetCoolTime(){
         timeCount = 0.0f;
         coolTime = Random.Range(coolTimeRange.x, coolTimeRange.y);
@@ -56,6 +69,14 @@ public class MissionGenerator : MonoBehaviour
         // time
         timeCount += Time.deltaTime;
 
+        // update pos if mission is destroyed
+        int tmp = missionNum;
+        getAllMissions();
+        if(tmp != missionNum){
+            updateMissionPos();
+        }
+
+        // make new mission
         if(timeCount > coolTime){
             resetCoolTime();
             if(missionNum < 9){
