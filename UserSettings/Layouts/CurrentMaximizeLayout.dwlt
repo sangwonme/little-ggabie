@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 40334
+  controlID: 42620
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 40335
+  controlID: 42621
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 40336
+  controlID: 42622
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -533,6 +533,7 @@ MonoBehaviour:
     - {fileID: 1614034556011149495, guid: 33c0498114897425ca13c0d1c00f4809, type: 2}
     - {fileID: -5854075960712720800, guid: feaf4d2ae1a504d4789eb946eea04dad, type: 2}
     - {fileID: 549514500583179139, guid: 7129b81f06ec5463f87da2eb7ead301c, type: 2}
+    - {fileID: 4271673306117079659, guid: cde065c0f0c174bc69e11bb88ce9482a, type: 2}
     m_ValueSerializationHelper:
     - e00: 1
       e01: 0
@@ -574,6 +575,22 @@ MonoBehaviour:
       e11: 0.393125
       e12: 0
       e13: 229.35312
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -664,7 +681,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 40260
+  controlID: 42651
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -722,9 +739,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e6590000
-      m_LastClickedID: 23014
-      m_ExpandedIDs: bee3feff34e4feffe204ffff5c0fffff9a0fffff703bffff763bffff5467ffff8473ffff8082ffffb09effffc0b9ffff96dbffff9adbffffb4dfffffb8dfffff04e4ffffacf9ffff30fbffff36fbffffe6590000625a0000
+      m_SelectedIDs: 6e1d0000
+      m_LastClickedID: 0
+      m_ExpandedIDs: bee3feff34e4feffe204ffff5c0fffff9a0fffff703bffff763bffff5467ffff8473ffff8082ffffb09effffc0b9ffff96dbffff9adbffffb4dfffffb8dfffff04e4ffffacf9ffff30fbffff36fbffff625a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -816,22 +833,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites/UI
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites/UI
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/sangwon/Desktop/Github-Repos/Games/LittleMonster
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 406f0000
-    m_LastClickedID: 28480
-    m_ExpandedIDs: 00000000ae5d0000c25d000000ca9a3b
+    m_SelectedIDs: c05d0000
+    m_LastClickedID: 24000
+    m_ExpandedIDs: 00000000ae5d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -884,8 +901,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e6590000
-    m_LastClickedInstanceID: 23014
+    m_SelectedInstanceIDs: 6e1d0000
+    m_LastClickedInstanceID: 7534
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000905e0000267500002275000000000000
     m_RenameOverlay:
@@ -903,7 +920,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 12}
+      m_ClientGUIView: {fileID: 0}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
