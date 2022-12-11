@@ -14,7 +14,6 @@ public class UIMonster : MonoBehaviour
     }
 
     public void setUIMission(bool turn){
-        Debug.Log(turn);
         uiMission.SetActive(turn);
     }
 

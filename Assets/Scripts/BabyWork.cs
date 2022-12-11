@@ -51,7 +51,7 @@ public class BabyWork : MonoBehaviour
         }
 
         // update ui mission length
-        if(state == "cry" || state == "soul" || state == "mission"){
+        if(state == "cry" || state == "soul" || state == "idle"){
             ui.setMissionLength(holdingTime);
             if(holdingTime > 0.0f){
                 ui.setUIMission(true);
