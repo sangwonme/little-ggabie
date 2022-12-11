@@ -24,7 +24,7 @@ public class MissionController : MonoBehaviour
         setRandomMission();
     }
     public void steRandomBaby(){
-        float tmp = Random.Range(0, 3.0f);
+        float tmp = Random.Range(0, 1.0f); // TODO : change 1.0 -> 3.0
         if(tmp < 1.0f){
             babyIdx = 1;
             ColorUtility.TryParseHtmlString("#4BCAE0", out color);
@@ -41,7 +41,7 @@ public class MissionController : MonoBehaviour
     }
 
     public void setRandomMission(){
-        float tmp = Random.Range(0, 3.0f);
+        float tmp = Random.Range(2.0f, 3.0f);
         if(tmp < 1.0f){
             missionType = "eat";
         }else if(tmp < 2.0f){

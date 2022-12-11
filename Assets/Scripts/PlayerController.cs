@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private Collider checkClosestMonster(){
         // get all close monsters
         Collider[] closeColliders = Physics.OverlapSphere(transform.position, 5.0f);
-        Collider[] enemyColliders = Array.FindAll(closeColliders, c => c.tag == "Flower");
+        Collider[] enemyColliders = Array.FindAll(closeColliders, c => (c.tag == "Flower" || c.tag == "Baby"));
         // find closest
         float bestDistance = 99999.0f;
         Collider closestMonsterCol = null;
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnTriggerStay(Collider other) {
-        if(other.tag == "Flower"){
+        if(other.tag == "Flower" || other.tag == "Baby"){
             if(other == checkClosestMonster()){
                 closestMonster = other.gameObject;
             }
@@ -89,7 +89,12 @@ public class PlayerController : MonoBehaviour
             isWorking = false;
         }
 
+
         // key control
+        if(Input.GetKeyDown(KeyCode.Z)){
+            Debug.Log("z pressed");
+            Debug.Log(workable);
+        }
         if(workable && Input.GetKeyDown(KeyCode.Z)){
             isWorking = !isWorking;
             isPlaying = false;

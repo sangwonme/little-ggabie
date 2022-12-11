@@ -36,7 +36,7 @@ public class EatSoul : MonoBehaviour
         }
 
         // turn off ui when night
-        if(!timer.isDay){
+        if(!timer.isDay && player.getClosestMonster() == gameObject){
             ui.setUIKey(false);
             player.setWorkable(false);
             ui.setUIMission(false);
