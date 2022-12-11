@@ -5,6 +5,8 @@ using UnityEngine;
 public class BabyController : MonoBehaviour
 {
 
+    public GameObject player;
+    public float speed;
     public Animator animator;
     public MissionGenerator missionGenerator;
     public int babyIdx;
@@ -17,7 +19,12 @@ public class BabyController : MonoBehaviour
     private bool isEat;
     private bool isPlay;
     private bool isSleep;
+    private bool isSoul;
 
+
+    public void morphSoul(){
+        state = "soul";
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +36,7 @@ public class BabyController : MonoBehaviour
         isEat = false;
         isPlay = false;
         isSleep = false;
+        isSoul = false;
     }
 
     // Update is called once per frame
@@ -47,6 +55,7 @@ public class BabyController : MonoBehaviour
         isEat = (state == "eat");
         isPlay = (state == "play");
         isSleep = (state == "sleep");
+        isSoul = (state == "soul");
 
         switch(state){
             case "cry":
@@ -59,6 +68,8 @@ public class BabyController : MonoBehaviour
             case "sleep":
 
                 break;
+            case "soul":
+                break;
             default:
                 break;
         }
@@ -67,5 +78,13 @@ public class BabyController : MonoBehaviour
         animator.SetBool("isEat", isEat);
         animator.SetBool("isPlay", isPlay);
         animator.SetBool("isSleep", isSleep);
+        animator.SetBool("isSoul", isSoul);
+    }
+
+    public void LateUpdate(){
+        if(isSoul){
+            Vector3 tragetPos = player.GetComponent<PlayerController>().backPosition();
+            transform.position = Vector3.Lerp(transform.position, tragetPos, Time.deltaTime * speed); 
+        }
     }
 }

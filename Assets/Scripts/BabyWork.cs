@@ -38,6 +38,13 @@ public class BabyWork : MonoBehaviour
         // update baby state
         updateBabyState();
 
+        // work done
+        if(holdingTime > 3.0f){
+            player.finishWorking();
+            // make soul
+            baby.morphSoul();
+        }
+
         // update ui mission length
         ui.setMissionLength(holdingTime);
         if(holdingTime > 0.0f){

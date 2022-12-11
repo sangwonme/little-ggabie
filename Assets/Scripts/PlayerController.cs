@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool isPlaying;
     private bool isWalking;
     private bool workable;
+    private Vector2 lastDirection;
 
     private GameObject closestMonster;
 
@@ -38,6 +39,13 @@ public class PlayerController : MonoBehaviour
     public void setWorkingDirection(float monZ){
         float delta = monZ - gameObject.transform.position.z;
         animator.SetFloat("WorkVertical", delta / Mathf.Abs(delta));
+    }
+
+    public Vector3 backPosition(){
+        float x = transform.position.x - lastDirection.x * 0.3f;
+        float y = transform.position.y;
+        float z = transform.position.z - lastDirection.y * 0.3f;
+        return new Vector3(x, y, z);
     }
 
     private Collider checkClosestMonster(){
@@ -74,6 +82,7 @@ public class PlayerController : MonoBehaviour
         isWorking = false;
         isPlaying = false;
         isWalking = false;
+        lastDirection = new Vector2(0.0f, 0.0f);
     }
 
 
@@ -124,6 +133,9 @@ public class PlayerController : MonoBehaviour
                 isWorking = false;
                 isPlaying = false;
             }
+
+            // update last direction
+            lastDirection = new Vector2(moveInput.x==0?0:Math.Sign(moveInput.x),moveInput.y==0?0:Math.Sign(moveInput.y) );
         }
 
         // update anim params
