@@ -34,7 +34,7 @@ public class MissionGenerator : MonoBehaviour
     private void giveNewMission(){
         Instantiate(missionPrefab, new Vector3(0,0,0), Quaternion.identity, transform);
         getAllMissions();
-        missions[missions.Length-4].GetComponent<MissionController>().initMission();
+        missions[missions.Length-5].GetComponent<MissionController>().initMission();
         updateMissionPos();
     }
 

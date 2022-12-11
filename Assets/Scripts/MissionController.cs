@@ -8,6 +8,8 @@ public class MissionController : MonoBehaviour
 {
     public RectTransform timeBar;
     public Image boardImg;
+    public Image timeBarColor;
+    public Image idxColor;
     public Sprite eatImg;
     public Sprite playImg;
     public Sprite sleepImg;
@@ -15,6 +17,7 @@ public class MissionController : MonoBehaviour
     private string missionType;
     private float remainingTime;
     private int babyIdx;
+    private Color color;
 
     public void initMission(){
         steRandomBaby();
@@ -24,11 +27,16 @@ public class MissionController : MonoBehaviour
         float tmp = Random.Range(0, 3.0f);
         if(tmp < 1.0f){
             babyIdx = 1;
+            ColorUtility.TryParseHtmlString("#4BCAE0", out color);
         }else if(tmp < 2.0f){
             babyIdx = 2;
+            ColorUtility.TryParseHtmlString("#E0D54B", out color);
         }else{
             babyIdx = 3;
+            ColorUtility.TryParseHtmlString("#4BE060", out color);
         }
+        timeBarColor.color = color;
+        idxColor.color = color;
         setMissionType();
     }
 
