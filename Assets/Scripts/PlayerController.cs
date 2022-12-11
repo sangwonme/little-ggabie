@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             isWorking = false;
             isWalking = false;
         }
-        else if(!isWorking && !isPlaying){
+        else{
             // move
             theRB.velocity = new Vector3(moveInput.x * moveSpeed, theRB.velocity.y, moveInput.y * moveSpeed);
 
@@ -114,6 +114,11 @@ public class PlayerController : MonoBehaviour
 
             // animator
             isWalking = (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0);
+
+            if(isWalking){
+                isWorking = false;
+                isPlaying = false;
+            }
         }
 
         // update anim params
