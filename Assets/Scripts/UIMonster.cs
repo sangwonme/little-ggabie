@@ -14,11 +14,12 @@ public class UIMonster : MonoBehaviour
     }
 
     public void setUIMission(bool turn){
+        Debug.Log(turn);
         uiMission.SetActive(turn);
     }
 
-    public void setMissionLength(float holdingTime){
-        missionLength = 0.68f * (holdingTime/3.0f);
+    public void setMissionLength(float holdingTime, float totalTime=3.0f){
+        missionLength = 0.68f * (holdingTime/totalTime);
         uiMission.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector2(missionLength, 0.0517f);
     }
 

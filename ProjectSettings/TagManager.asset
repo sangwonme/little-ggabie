@@ -7,6 +7,8 @@ TagManager:
   - Mission
   - Flower
   - Baby
+  - Home
+  - Playground
   layers:
   - Default
   - TransparentFX

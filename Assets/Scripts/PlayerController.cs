@@ -19,6 +19,18 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastDirection;
 
     private GameObject closestMonster;
+    private bool atHome;
+    private bool atPlayground;
+
+    public string getPlace(){
+        if(atHome){
+            return "home";
+        }else if(atPlayground){
+            return "playground";
+        }else{
+            return "none";
+        }
+    }
 
     public void finishWorking(){
         isWorking = false;
@@ -41,9 +53,9 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("WorkVertical", delta / Mathf.Abs(delta));
     }
 
-    public Vector3 backPosition(){
+    public Vector3 backPosition(float babY){
         float x = transform.position.x - lastDirection.x * 0.3f;
-        float y = transform.position.y;
+        float y = babY;
         float z = transform.position.z - lastDirection.y * 0.3f;
         return new Vector3(x, y, z);
     }
@@ -83,6 +95,8 @@ public class PlayerController : MonoBehaviour
         isPlaying = false;
         isWalking = false;
         lastDirection = new Vector2(0.0f, 0.0f);
+        atHome = false;
+        atPlayground = false;
     }
 
 
@@ -100,10 +114,6 @@ public class PlayerController : MonoBehaviour
 
 
         // key control
-        if(Input.GetKeyDown(KeyCode.Z)){
-            Debug.Log("z pressed");
-            Debug.Log(workable);
-        }
         if(workable && Input.GetKeyDown(KeyCode.Z)){
             isWorking = !isWorking;
             isPlaying = false;
@@ -145,5 +155,24 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isPlaying", isPlaying);
         animator.SetBool("isWorking", isWorking);
 
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.tag == "Playground"){
+            atPlayground = true;
+        }
+        else if(other.tag == "Home"){
+            atHome = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(other.tag == "Playground"){
+            atPlayground = false;
+        }
+        else if(other.tag == "Home"){
+            atHome = false;
+        }
+        
     }
 }

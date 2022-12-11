@@ -40,17 +40,24 @@ public class BabyWork : MonoBehaviour
 
         // work done
         if(holdingTime > 3.0f){
+            holdingTime = 0.0f;
             player.finishWorking();
             // make soul
-            baby.morphSoul();
+            if(state == "soul"){
+                baby.morphBaby();
+            }else{
+                baby.morphSoul();
+            }
         }
 
         // update ui mission length
-        ui.setMissionLength(holdingTime);
-        if(holdingTime > 0.0f){
-            ui.setUIMission(true);
-        }else{
-            ui.setUIMission(false);
+        if(state == "cry" || state == "soul" || state == "mission"){
+            ui.setMissionLength(holdingTime);
+            if(holdingTime > 0.0f){
+                ui.setUIMission(true);
+            }else{
+                ui.setUIMission(false);
+            }
         }
 
     }
@@ -61,7 +68,7 @@ public class BabyWork : MonoBehaviour
         if(other.tag == "Player"){
             if(mission == "eat" && state == "cry"){
                 // x button
-            }else{
+            }else if(state == "idle" || state == "cry" || state == "soul"){
                 // z button
                 ui.setUIKey(holdingTime == 0.0f && gameObject == player.getClosestMonster());
                 player.setWorkable(true);
