@@ -12,6 +12,7 @@ public class BabyController : MonoBehaviour
     public int babyIdx;
     public string state;
     public string mission;
+    public Vector3 home;
 
     // cooltime
     private UIMonster ui;
@@ -71,7 +72,6 @@ public class BabyController : MonoBehaviour
     void Update()
     {
         timeCount += Time.deltaTime;
-        Debug.Log(timeCount);
 
         // update current mission
         mission = missionGenerator.getPrioryMission(babyIdx);
@@ -98,6 +98,7 @@ public class BabyController : MonoBehaviour
                     timeCount = 0.0f;
                     ui.setUIMission(false);
                     state = "idle";
+                    transform.position = home;
                 }else{
                     ui.setUIMission(true);
                     ui.setMissionLength(timeCount, missionTime);
