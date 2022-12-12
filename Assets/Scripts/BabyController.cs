@@ -86,6 +86,9 @@ public class BabyController : MonoBehaviour
         isSleep = (state == "sleep");
         isSoul = (state == "soul");
 
+        Debug.Log(state);
+        Debug.Log(isSleep);
+
         switch(state){
             case "cry":
                 break;
@@ -127,6 +130,7 @@ public class BabyController : MonoBehaviour
         animator.SetBool("isEat", isEat);
         animator.SetBool("isPlay", isPlay);
         animator.SetBool("isSleep", isSleep);
+        Debug.Log(animator.GetBool("isSleep"));
         animator.SetBool("isSoul", isSoul);
     }
 
