@@ -5,6 +5,7 @@ using TMPro;
 
 public class UIShop : MonoBehaviour
 {
+    private Timer timer;
     private Inventory inven;
     private int meatBuy;
     private int flowerBuy;
@@ -35,6 +36,7 @@ public class UIShop : MonoBehaviour
         gameObject.SetActive(false);
         meatBuy = 0;
         flowerBuy = 0;
+        timer.makeResume();
     }
 
     public void onButton(string btn){
@@ -61,6 +63,7 @@ public class UIShop : MonoBehaviour
     {
         price = 1;
         inven = GameObject.Find("GameController").GetComponent<Inventory>();
+        timer = GameObject.Find("GameController").GetComponent<Timer>();
         btnText.text = "QUIT";
         meatBuyText.text = "0";
         flowerBuyText.text = "0";
@@ -84,6 +87,8 @@ public class UIShop : MonoBehaviour
             gameObject.SetActive(false);
             meatBuy = 0;
             flowerBuy = 0;
+            timer.makeResume();
+            
         }
         else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow)){
             more();

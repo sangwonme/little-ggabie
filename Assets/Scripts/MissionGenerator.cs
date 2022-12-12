@@ -7,6 +7,7 @@ public class MissionGenerator : MonoBehaviour
     public Vector2 coolTimeRange;
     public GameObject missionPrefab;
     private Transform[] missions;
+    public Timer timer;
     private int missionNum;
     private float coolTime;
 
@@ -98,7 +99,9 @@ public class MissionGenerator : MonoBehaviour
     void Update()
     {
         // time
-        timeCount += Time.deltaTime;
+        if(!timer.pause){
+            timeCount += Time.deltaTime;
+        }
 
         // update pos if mission is destroyed
         int tmp = missionNum;

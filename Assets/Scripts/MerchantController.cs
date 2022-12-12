@@ -41,6 +41,7 @@ public class MerchantController : MonoBehaviour
             ui.setUIKey(true);
             if(Input.GetKey(KeyCode.X)){
                 ui.setUIShop(true);
+                timer.makePause();
             }
         }
     }

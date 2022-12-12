@@ -14,6 +14,8 @@ public class BabyWork : MonoBehaviour
 
     public float holdingTime;
 
+    private Timer timer;
+
     void updateBabyState(){
         mission = baby.mission;
         state = baby.state;
@@ -23,6 +25,7 @@ public class BabyWork : MonoBehaviour
     void Start()
     {
         inven = GameObject.Find("GameController").GetComponent<Inventory>();
+        timer = GameObject.Find("GameController").GetComponent<Timer>();
         workCollider = GetComponent<BoxCollider>();
         player = GameObject.Find("Player").GetComponent<PlayerController>();
         ui = transform.parent.gameObject.GetComponent<UIMonster>();
@@ -94,7 +97,7 @@ public class BabyWork : MonoBehaviour
                 ui.setKeyImg("c");
                 ui.setUIKey(holdingTime == 0.0f && gameObject == player.getClosestMonster());
                 if(gameObject == player.getClosestMonster()){
-                    if(player.checkPlayingMusic()) holdingTime += Time.deltaTime;
+                    if(player.checkPlayingMusic() && !timer.pause) holdingTime += Time.deltaTime;
                     else holdingTime = 0.0f;
                 }
             }

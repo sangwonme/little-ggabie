@@ -19,6 +19,7 @@ public class MissionController : MonoBehaviour
     private float remainingTime;
     private int babyIdx;
     private Color color;
+    private Timer timer;
     
 
     public void clearMission(){
@@ -61,7 +62,6 @@ public class MissionController : MonoBehaviour
     }
 
     public void setBabyIdx(int idx){
-        Debug.Log(idx);
         babyIdx = idx;
         switch(idx){
             case 1:
@@ -86,13 +86,16 @@ public class MissionController : MonoBehaviour
     void Start()
     {
         health = GameObject.Find("GameController").GetComponent<Health>();
+        timer = GameObject.Find("GameController").GetComponent<Timer>();
         remainingTime = missionTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        remainingTime -= Time.deltaTime;
+        if(!timer.pause){
+            remainingTime -= Time.deltaTime;
+        }
 
         // update timebar
         timeBar.sizeDelta = new Vector2((remainingTime/missionTime)*142f, 48f);

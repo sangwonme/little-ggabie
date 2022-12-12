@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     public bool isDay = true;
     public float timeLeft;
     public int dayCount;
+    public bool pause;
 
     public void init(){
         bulbLight.intensity = 0.0f;
@@ -22,6 +23,15 @@ public class Timer : MonoBehaviour
         isDay = true;
         timeLeft = totalTime;
         dayCount = 1;
+        pause = false;
+    }
+
+    public void makePause(){
+        pause = true;
+    }
+
+    public void makeResume(){
+        pause = false;
     }
 
     // Start is called before the first frame update
@@ -30,11 +40,15 @@ public class Timer : MonoBehaviour
         init();
     }
 
+
     // Update is called once per frame
     void Update()
     {
         // countdown
-        timeLeft -= Time.deltaTime;
+        if(!pause){
+            timeLeft -= Time.deltaTime;
+        }
+        
         if(timeLeft <= nightTime){
             isDay = false;
         }

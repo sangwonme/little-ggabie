@@ -34,7 +34,7 @@ public class BabyController : MonoBehaviour
     private bool isSleep;
     private bool isSoul;
 
-
+    
     public void morphSoul(){
         state = "soul";
     }

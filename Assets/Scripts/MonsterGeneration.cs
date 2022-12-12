@@ -36,7 +36,9 @@ public class MonsterGeneration : MonoBehaviour
     {
         if(timer.isDay){
             // timecount
-            spawnPeriod -= Time.deltaTime;
+            if(!timer.pause){
+                spawnPeriod -= Time.deltaTime;
+            }
             // spawn monster
             if(spawnPeriod < 0){
                 Instantiate(monsterPrefab, initPos(), Quaternion.identity, transform);

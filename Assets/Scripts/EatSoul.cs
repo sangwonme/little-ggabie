@@ -61,7 +61,7 @@ public class EatSoul : MonoBehaviour
                 player.setWorkable(true);
                 player.setWorkingDirection(transform.position.z - 1.05f);
                 if(gameObject == player.getClosestMonster()){
-                    if(player.checkWorking()) holdingTime += Time.deltaTime;
+                    if(player.checkWorking() && !timer.pause) holdingTime += Time.deltaTime;
                     else holdingTime = 0.0f;
                 }
             }

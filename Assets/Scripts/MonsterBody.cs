@@ -95,10 +95,12 @@ public class MonsterBody : MonoBehaviour
         if(timer.isDay) state = "idle";
         
         // walk
-        walk();
+        if(!timer.pause){
+            walk();
+        }
         
         // state change
-        if(!timer.isDay){
+        if(!timer.isDay && !timer.pause){
             stateChangeTimeLeft -= Time.deltaTime;
             if(stateChangeTimeLeft < 0){
                 setRandomTimeLeft();
