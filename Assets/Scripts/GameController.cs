@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 
 	public GameObject title;
 	public GameObject gameover;
+	public GameObject tutorial;
 	public Health health;
 	public Timer timer;
 	public PlayerController player;
@@ -66,6 +67,7 @@ public class GameController : MonoBehaviour {
 		powerOnObject(false);
 		title.SetActive(true);
 		gameover.SetActive(false);
+		tutorial.SetActive(false);
 		state = "title";
 	}
 
@@ -76,20 +78,34 @@ public class GameController : MonoBehaviour {
 			case "title":
 				powerOnObject(false);
 				title.SetActive(true);
+				tutorial.SetActive(false);
 				gameover.SetActive(false);
 				break;
 			case "play":
 				title.SetActive(false);
 				gameover.SetActive(false);
+				tutorial.SetActive(false);
+				ingameUI.SetActive(true);
+				timer.makeResume();
 				// go to gameover
 				if(health.isDead()){
 					dayText.text = timer.dayCount.ToString();
 					state = "gameover";
 				}
+				// menu
+				if(Input.GetKeyDown(KeyCode.Escape)){
+					state = (state == "pause") ? "play" : "pause";
+				}
+				break;
+			case "pause":
+				timer.makePause();
+				tutorial.SetActive(true);
+				ingameUI.SetActive(false);
 				break;
 			case "gameover":
 				powerOnObject(false);
 				gameover.SetActive(true);
+				tutorial.SetActive(false);
 				break;
 		}
 
@@ -105,6 +121,9 @@ public class GameController : MonoBehaviour {
 			case "home":
 				state = "title";
 				initGame();
+				break;
+			case "resume":
+				state = "play";
 				break;
 		}
 	}

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool workable;
     private Vector2 lastDirection;
     private Health health;
+    private Timer timer;
 
     private GameObject closestMonster;
     private bool atHome;
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         init();
         health = GameObject.Find("GameController").GetComponent<Health>();
+        timer = GameObject.Find("GameController").GetComponent<Timer>();
     }
 
 
@@ -141,7 +143,12 @@ public class PlayerController : MonoBehaviour
         }
         else{
             // move
-            theRB.velocity = new Vector3(moveInput.x * moveSpeed, theRB.velocity.y, moveInput.y * moveSpeed);
+            if(!timer.pause){
+                theRB.velocity = new Vector3(moveInput.x * moveSpeed, theRB.velocity.y, moveInput.y * moveSpeed);
+            }
+            else{
+                theRB.velocity = new Vector3(0, 0, 0);
+            }
 
             // sprite direction
             if(moveInput.x > 0){
