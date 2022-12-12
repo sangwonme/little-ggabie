@@ -28,7 +28,7 @@ public class MonsterGeneration : MonoBehaviour
     }
 
     void setSpawnPeriod(){
-        spawnPeriod = (Random.Range(3.0f, 7.0f));
+        spawnPeriod = (Random.Range(5.0f, 10.0f));
     }
 
     // Update is called once per frame

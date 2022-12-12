@@ -281,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d23439a996ea4dd496976caab7144ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
   timeBar: {fileID: 8276351949856945379}
   boardImg: {fileID: 8276351951321092973}
   timeBarColor: {fileID: 8276351949856945378}
@@ -289,7 +288,7 @@ MonoBehaviour:
   eatImg: {fileID: 21300000, guid: f04ff0fdf925448da90e8fef42b8fc4a, type: 3}
   playImg: {fileID: 21300000, guid: fd75d6e9f03604732bbb5766d85d311e, type: 3}
   sleepImg: {fileID: 21300000, guid: 6b9765912d15249a3ac5f9623ce19fb8, type: 3}
-  missionTime: 10
+  missionTime: 50
 --- !u!1 &8276351951321092963
 GameObject:
   m_ObjectHideFlags: 0
