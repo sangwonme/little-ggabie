@@ -14,30 +14,49 @@ public class MonsterBody : MonoBehaviour
     // walk
     private SpriteRenderer sprite;
     private Rigidbody theRb;
+    private Vector2 direction;
     // collider
     private BoxCollider boxCollider;
     private SphereCollider sphereCollider;
 
+    void setRandomDirection(){
+        direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
+    }
+
     // set random time left to state change
     void setRandomTimeLeft(){
-        stateChangeTimeLeft = Random.Range(3.0f, 5.0f);
+        stateChangeTimeLeft = Random.Range(1.0f, 5.0f);
     }
 
     // change Random State
     void setRandomState(){
-        // if monster was moving left or right -> set idle
-        if(state == "left" || state == "right"){
+        // if monster was walk -> set idle
+        if(state == "walk"){
             state = "idle";
         }
-        // else choose random direction
+        // else make walk
         else if(state == "idle"){
-            float tmp = Random.Range(0.0f, 1.0f);
-            if(tmp < 0.5f){
-                state = "left";
+            state = "walk";
+            setRandomDirection();
+        }
+    }
+
+    private void walk(){
+        animator.SetBool("isWalk", (state == "walk"));
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        if(!timer.isDay && state == "walk"){
+            if(direction.x < 0){
+                sprite.flipX = false;
             }
-            else{
-                state = "right";
+            else if(direction.x > 0){
+                sprite.flipX = true;
             }
+            theRb.velocity = new Vector3(direction.x * xSpeed, 0, direction.y * xSpeed);
+        }
+        // sleep
+        else{
+            theRb.velocity = new Vector3(0, 0, 0);
         }
     }
 
@@ -48,6 +67,7 @@ public class MonsterBody : MonoBehaviour
         state = "idle";
         setRandomTimeLeft();
         // walk
+        setRandomDirection();
         sprite = GetComponent<SpriteRenderer>();
         theRb = GetComponent<Rigidbody>();
         // collider
@@ -71,22 +91,7 @@ public class MonsterBody : MonoBehaviour
         if(timer.isDay) state = "idle";
         
         // walk
-        animator.SetBool("isWalk", (state == "left" || state == "right"));
-        if(!timer.isDay){
-            if(state == "left"){
-                sprite.flipX = false;
-                theRb.velocity = new Vector3(-xSpeed, 0, 0);
-            }
-            else if(state == "right"){
-                sprite.flipX = true;
-                theRb.velocity = new Vector3(xSpeed, 0, 0);
-            }
-            else{
-                theRb.velocity = new Vector3(0, 0, 0);
-            }
-        }else{
-            theRb.velocity = new Vector3(0, 0, 0);
-        }
+        walk();
         
         // state change
         if(!timer.isDay){
