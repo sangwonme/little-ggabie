@@ -14,6 +14,10 @@ public class BabyController : MonoBehaviour
     public string mission;
     public Vector3 home;
 
+    // light
+    public Light cryingLight;
+    private int lightBrighter;
+
     // cooltime
     private UIMonster ui;
     private float missionTime = 5.0f;
@@ -76,6 +80,9 @@ public class BabyController : MonoBehaviour
         // cooltime
         ui = GetComponent<UIMonster>();
         timeCount = 0.0f;
+
+        // light
+        lightBrighter = 1;
     }
 
     // Update is called once per frame
@@ -141,6 +148,17 @@ public class BabyController : MonoBehaviour
                 break;
             default:
                 break;
+        }
+
+        // crying light
+        if(state == "soul" || state == "cry"){
+            if(cryingLight.intensity <= 0.0f){
+                lightBrighter = 1;
+            }
+            else if(cryingLight.intensity >= 2.0f){
+                lightBrighter = -1;
+            }
+            cryingLight.intensity += lightBrighter * 0.05f;
         }
 
         animator.SetBool("isCry", isCry);

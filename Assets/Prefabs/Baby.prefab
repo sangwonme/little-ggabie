@@ -654,6 +654,7 @@ MonoBehaviour:
   state: 
   mission: 
   home: {x: 22.2, y: 0.404, z: 7.2}
+  cryingLight: {fileID: 5984750431084287510}
 --- !u!65 &5984750431054446613
 BoxCollider:
   m_ObjectHideFlags: 0

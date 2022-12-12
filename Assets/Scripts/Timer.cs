@@ -70,7 +70,7 @@ public class Timer : MonoBehaviour
             }
         }
         else if(!isDay && moonLight.intensity > 2.5f){
-            if(bulbLight.intensity < 7.0f){
+            if(bulbLight.intensity < 1.7f){
                 bulbLight.intensity += 0.07f;
             }
         }
