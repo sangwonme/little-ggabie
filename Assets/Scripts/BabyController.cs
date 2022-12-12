@@ -112,6 +112,11 @@ public class BabyController : MonoBehaviour
             case "sleep":
                 break;
             case "soul":
+                // if out of home even though no mission
+                if(mission == "none"){
+                    state = "idle";
+                    transform.position = home;
+                }
                 break;
             default:
                 break;

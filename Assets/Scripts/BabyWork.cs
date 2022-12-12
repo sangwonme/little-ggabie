@@ -68,7 +68,15 @@ public class BabyWork : MonoBehaviour
         if(other.tag == "Player"){
             if(mission == "eat" && state == "cry"){
                 // x button
-            }else if(state == "idle" || state == "cry" || state == "soul"){
+            }
+            else if(mission == "sleep" && state == "cry"){
+
+            }
+            else if(
+                mission == "play" && state == "cry" ||
+                mission == "play" && state == "soul" && player.GetComponent<PlayerController>().getPlace()=="playground" ||
+                mission == "none" && state == "soul"
+            ){
                 // z button
                 ui.setUIKey(holdingTime == 0.0f && gameObject == player.getClosestMonster());
                 player.setWorkable(true);
