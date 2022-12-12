@@ -33,6 +33,8 @@ public class UIShop : MonoBehaviour
             inven.buyMeat(price);
         }
         gameObject.SetActive(false);
+        meatBuy = 0;
+        flowerBuy = 0;
     }
 
     public void onButton(string btn){
@@ -80,6 +82,8 @@ public class UIShop : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Escape)){
             gameObject.SetActive(false);
+            meatBuy = 0;
+            flowerBuy = 0;
         }
         else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow)){
             more();
