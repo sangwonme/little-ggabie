@@ -1,13 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIMonster : MonoBehaviour
 {
 
+    public Image keyImg;
+    public Sprite Z;
+    public Sprite X;
+    public Sprite C;
     private GameObject uiKey;
     private GameObject uiMission;
     private float missionLength;
+
+    public void setKeyImg(string key){
+        switch(key){
+            case "z":
+                keyImg.sprite = Z;
+                break;
+            case "x":
+                keyImg.sprite = X;
+                break;
+            case "c":
+                keyImg.sprite = C;
+                break;
+        }
+    }
 
     public void setUIKey(bool turn){
         uiKey.SetActive(turn);

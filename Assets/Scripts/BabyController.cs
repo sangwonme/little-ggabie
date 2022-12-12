@@ -33,26 +33,19 @@ public class BabyController : MonoBehaviour
     }
 
     public void morphBaby(){
-        switch(mission){
-            case "none":
-                state = "idle";
-                break;
-            case "eat":
-                state = "cry";
-                break;
-            case "sleep":
-                state = "cry";
-                break;
-            case "play":
-                // set hold time to 0 if baby is not playing
-                if(state != "play") timeCount = 0.0f;
-                // if baby is at playground -> state = play / mission clear
-                state = player.GetComponent<PlayerController>().getPlace()=="playground" ? "play" : "idle";
-                if(state == "play"){
-                    missionGenerator.clearMissionOfBaby(babyIdx);
-                }
-                break;
+        // set hold time to 0 if baby is not playing
+        if(state != "play") timeCount = 0.0f;
+        // if baby is at playground -> state = play / mission clear
+        state = player.GetComponent<PlayerController>().getPlace()=="playground" ? "play" : "idle";
+        if(state == "play"){
+            missionGenerator.clearMissionOfBaby(babyIdx);
         }
+    }
+
+    public void makeSleep(){
+        timeCount = 0.0f;
+        state = "sleep";
+        missionGenerator.clearMissionOfBaby(babyIdx);
     }
 
     // Start is called before the first frame update
@@ -110,6 +103,14 @@ public class BabyController : MonoBehaviour
                 }
                 break;
             case "sleep":
+                if(timeCount > missionTime){
+                    timeCount = 0.0f;
+                    ui.setUIMission(false);
+                    state = "idle";
+                }else{
+                    ui.setUIMission(true);
+                    ui.setMissionLength(timeCount, missionTime);
+                }
                 break;
             case "soul":
                 // if out of home even though no mission

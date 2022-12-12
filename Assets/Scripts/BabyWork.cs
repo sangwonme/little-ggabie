@@ -41,12 +41,20 @@ public class BabyWork : MonoBehaviour
         // work done
         if(holdingTime > 3.0f){
             holdingTime = 0.0f;
-            player.finishWorking();
-            // make soul
-            if(state == "soul"){
-                baby.morphBaby();
-            }else{
-                baby.morphSoul();
+            switch(mission){
+                case "play":
+                    player.finishWorking();
+                    // make soul
+                    if(state == "soul"){
+                        baby.morphBaby();
+                    }else{
+                        baby.morphSoul();
+                    }
+                    break;
+                case "sleep":
+                    player.finishPlayingMusic();
+                    baby.makeSleep();
+                    break;
             }
         }
 
@@ -68,9 +76,18 @@ public class BabyWork : MonoBehaviour
         if(other.tag == "Player"){
             if(mission == "eat" && state == "cry"){
                 // x button
+                ui.setKeyImg("x");
+                
+                
             }
             else if(mission == "sleep" && state == "cry"){
-
+                // c button
+                ui.setKeyImg("c");
+                ui.setUIKey(holdingTime == 0.0f && gameObject == player.getClosestMonster());
+                if(gameObject == player.getClosestMonster()){
+                    if(player.checkPlayingMusic()) holdingTime += Time.deltaTime;
+                    else holdingTime = 0.0f;
+                }
             }
             else if(
                 mission == "play" && state == "cry" ||
@@ -78,6 +95,7 @@ public class BabyWork : MonoBehaviour
                 mission == "none" && state == "soul"
             ){
                 // z button
+                ui.setKeyImg("z");
                 ui.setUIKey(holdingTime == 0.0f && gameObject == player.getClosestMonster());
                 player.setWorkable(true);
                 player.setWorkingDirection(transform.position.z);

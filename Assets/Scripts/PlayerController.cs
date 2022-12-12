@@ -40,6 +40,14 @@ public class PlayerController : MonoBehaviour
         return isWorking;
     }
 
+    public void finishPlayingMusic(){
+        isPlaying = false;
+    }
+
+    public bool checkPlayingMusic(){
+        return isPlaying;
+    }
+
     public void setWorkable(bool turn){
         workable = turn;
     }
@@ -119,7 +127,7 @@ public class PlayerController : MonoBehaviour
             isPlaying = false;
             isWalking = false;
         }
-        else if(Input.GetKeyDown(KeyCode.X)){
+        else if(Input.GetKeyDown(KeyCode.C)){
             isPlaying = !isPlaying;
             isWorking = false;
             isWalking = false;
