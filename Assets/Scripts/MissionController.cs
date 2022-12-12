@@ -59,7 +59,6 @@ public class MissionController : MonoBehaviour
     }
 
     public void setBabyIdx(int idx){
-        Debug.Log(idx);
         babyIdx = idx;
         switch(idx){
             case 1:

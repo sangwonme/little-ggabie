@@ -39,7 +39,7 @@ public class MerchantController : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         if(other.tag == "Player" && timer.isDay){
             ui.setUIKey(true);
-            if(Input.GetKeyDown(KeyCode.C)){
+            if(Input.GetKey(KeyCode.X)){
                 ui.setUIShop(true);
             }
         }
