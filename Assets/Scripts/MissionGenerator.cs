@@ -13,6 +13,12 @@ public class MissionGenerator : MonoBehaviour
     private float timeCount;
     
 
+    public void destroyChildren(){
+         foreach (Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+    }
+
     public void clearMissionOfBaby(int babyIdx){
         for(int i = 0; i < missions.Length; i++){
             if(missions[i].tag == "Mission"){

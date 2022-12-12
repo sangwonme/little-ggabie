@@ -8,6 +8,12 @@ public class MonsterGeneration : MonoBehaviour
     private Timer timer;
     float spawnPeriod;
 
+    public void destroyChildren(){
+         foreach (Transform child in transform) {
+            Destroy(child.gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

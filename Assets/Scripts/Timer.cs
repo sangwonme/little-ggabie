@@ -14,11 +14,20 @@ public class Timer : MonoBehaviour
     public float timeLeft;
     public int dayCount;
 
+    public void init(){
+        bulbLight.intensity = 0.0f;
+        redLight.intensity = 0.0f;
+        moonLight.intensity = 0.0f;
+        sunlight.intensity = 10.0f;
+        isDay = true;
+        timeLeft = totalTime;
+        dayCount = 1;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        timeLeft = totalTime;
-        dayCount = 1;
+        init();
     }
 
     // Update is called once per frame

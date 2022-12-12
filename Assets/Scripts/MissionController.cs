@@ -19,6 +19,7 @@ public class MissionController : MonoBehaviour
     private float remainingTime;
     private int babyIdx;
     private Color color;
+    
 
     public void clearMission(){
         Destroy(gameObject);

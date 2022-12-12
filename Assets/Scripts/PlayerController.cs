@@ -96,9 +96,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public void init(){
         workable = false;
         isWorking = false;
         isPlaying = false;
@@ -106,6 +104,13 @@ public class PlayerController : MonoBehaviour
         lastDirection = new Vector2(0.0f, 0.0f);
         atHome = false;
         atPlayground = false;
+        transform.position = new Vector3(25.19f, 0.57f, 7f);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        init();
         health = GameObject.Find("GameController").GetComponent<Health>();
     }
 

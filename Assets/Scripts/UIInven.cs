@@ -8,7 +8,7 @@ public class UIInven : MonoBehaviour
     private Inventory inven;
     public TMP_Text meatNum;
     public TMP_Text flowerNum;
-    
+
     // Start is called before the first frame update
     void Start()
     {

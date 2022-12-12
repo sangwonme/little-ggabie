@@ -11,11 +11,14 @@ public class CamerController : MonoBehaviour
     public Vector3 farPos;
     private bool isFollow;
     
+    public void init(){
+        isFollow = false;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        isFollow = false;
+        init();
     }
 
     // Update is called once per frame

@@ -7,6 +7,11 @@ public class Inventory : MonoBehaviour
     private int meatNum;
     private int flowerNum;
 
+    public void init(){
+        meatNum = 0;
+        flowerNum = 0;
+    }
+
     public bool meatExist(){
         return meatNum > 0;
     }
@@ -34,8 +39,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        meatNum = 0;
-        flowerNum = 0;
+        init();
     }
 
     // Update is called once per frame

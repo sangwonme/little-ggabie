@@ -7,6 +7,11 @@ public class Health : MonoBehaviour
     public float hp;
     public float fullHp;
 
+    public void init(){
+        fullHp = 100.0f;
+        hp = fullHp;
+    }
+
     // void meet monster
     public void reduceHP(){
         hp -= 1.0f * Time.deltaTime;
@@ -26,8 +31,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fullHp = 100.0f;
-        hp = fullHp;
+        init();
     }
 
     // Update is called once per frame

@@ -62,11 +62,7 @@ public class BabyController : MonoBehaviour
         missionGenerator.clearMissionOfBaby(babyIdx);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        inven = GameObject.Find("GameController").GetComponent<Inventory>();
-        
+    public void init(){
         // state & mission
         state = "idle";
 
@@ -78,11 +74,22 @@ public class BabyController : MonoBehaviour
         isSoul = false;
 
         // cooltime
-        ui = GetComponent<UIMonster>();
         timeCount = 0.0f;
 
         // light
         lightBrighter = 1;
+
+        // pos
+        transform.position = home;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        inven = GameObject.Find("GameController").GetComponent<Inventory>();
+        ui = GetComponent<UIMonster>();
+        
+        init();
     }
 
     // Update is called once per frame
