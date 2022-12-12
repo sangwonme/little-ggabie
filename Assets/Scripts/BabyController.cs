@@ -20,6 +20,9 @@ public class BabyController : MonoBehaviour
     private float timeCount;
 
 
+    // inven
+    private Inventory inven;
+
     // anim
     private bool isCry;
     private bool isEat;
@@ -48,9 +51,18 @@ public class BabyController : MonoBehaviour
         missionGenerator.clearMissionOfBaby(babyIdx);
     }
 
+    public void eatMeat(){
+        inven.eatMeat();
+        timeCount = 0.0f;
+        state = "eat";
+        missionGenerator.clearMissionOfBaby(babyIdx);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        inven = GameObject.Find("GameController").GetComponent<Inventory>();
+        
         // state & mission
         state = "idle";
 
@@ -86,13 +98,18 @@ public class BabyController : MonoBehaviour
         isSleep = (state == "sleep");
         isSoul = (state == "soul");
 
-        Debug.Log(state);
-        Debug.Log(isSleep);
-
         switch(state){
             case "cry":
                 break;
             case "eat":
+                if(timeCount > missionTime){
+                    timeCount = 0.0f;
+                    ui.setUIMission(false);
+                    state = "idle";
+                }else{
+                    ui.setUIMission(true);
+                    ui.setMissionLength(timeCount, missionTime);
+                }
                 break;
             case "play":
                 if(timeCount > missionTime){
@@ -130,7 +147,6 @@ public class BabyController : MonoBehaviour
         animator.SetBool("isEat", isEat);
         animator.SetBool("isPlay", isPlay);
         animator.SetBool("isSleep", isSleep);
-        Debug.Log(animator.GetBool("isSleep"));
         animator.SetBool("isSoul", isSoul);
     }
 

@@ -29,7 +29,7 @@ public class MissionController : MonoBehaviour
     }
 
     public void setRandomMission(){
-        float tmp = Random.Range(2.0f, 3.0f);
+        float tmp = Random.Range(0.0f, 1.0f);
         if(tmp < 1.0f){
             missionType = "eat";
         }else if(tmp < 2.0f){

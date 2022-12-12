@@ -7,6 +7,13 @@ public class Inventory : MonoBehaviour
     private int meatNum;
     private int flowerNum;
 
+    public bool meatExist(){
+        return meatNum > 0;
+    }
+    public void eatMeat(){
+        meatNum -= 1;
+    }
+
     public void buyMeat(int price){
         meatNum += 1;
         flowerNum -= price;

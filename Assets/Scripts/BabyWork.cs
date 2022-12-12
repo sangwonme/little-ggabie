@@ -74,11 +74,17 @@ public class BabyWork : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         updateBabyState();
         if(other.tag == "Player"){
-            if(mission == "eat" && state == "cry"){
+            if(mission == "eat" && state == "cry" && inven.meatExist()){
                 // x button
                 ui.setKeyImg("x");
-                
-                
+                ui.setUIKey(gameObject == player.getClosestMonster());
+                if(gameObject == player.getClosestMonster()){
+                    Debug.Log(Input.GetKeyDown(KeyCode.X));
+                    if(Input.GetKeyDown(KeyCode.X)){
+                        ui.setUIKey(false);
+                        baby.eatMeat();
+                    }
+                }
             }
             else if(mission == "sleep" && state == "cry"){
                 // c button
