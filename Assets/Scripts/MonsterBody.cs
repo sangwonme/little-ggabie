@@ -18,6 +18,8 @@ public class MonsterBody : MonoBehaviour
     // collider
     private BoxCollider boxCollider;
     private SphereCollider sphereCollider;
+    // health
+    private Health health;
 
     void setRandomDirection(){
         direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
@@ -75,6 +77,8 @@ public class MonsterBody : MonoBehaviour
         sphereCollider = GetComponent<SphereCollider>();
         // timer
         timer = GameObject.Find("GameController").GetComponent<Timer>();
+        // health
+        health = GameObject.Find("GameController").GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -116,6 +120,7 @@ public class MonsterBody : MonoBehaviour
         if(other.tag == "Player" && !timer.isDay){
             state = "scream";
             animator.SetBool("isScream", true);
+            health.reduceHP();
         }
     }
     private void OnTriggerExit(Collider other) {

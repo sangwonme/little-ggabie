@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MissionController : MonoBehaviour
 {
+    private Health health;
     public RectTransform timeBar;
     public Image boardImg;
     public Image timeBarColor;
@@ -83,6 +84,7 @@ public class MissionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = GameObject.Find("GameController").GetComponent<Health>();
         remainingTime = missionTime;
     }
 
@@ -94,8 +96,9 @@ public class MissionController : MonoBehaviour
         // update timebar
         timeBar.sizeDelta = new Vector2((remainingTime/missionTime)*142f, 48f);
 
-        // destroy
+        // destroy (fail mission)
         if(remainingTime <= 0.0f){
+            health.missionFail();
             Destroy(gameObject);
         }
     }

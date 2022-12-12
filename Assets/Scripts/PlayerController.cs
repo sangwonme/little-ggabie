@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool isWalking;
     private bool workable;
     private Vector2 lastDirection;
+    private Health health;
 
     private GameObject closestMonster;
     private bool atHome;
@@ -105,6 +106,7 @@ public class PlayerController : MonoBehaviour
         lastDirection = new Vector2(0.0f, 0.0f);
         atHome = false;
         atPlayground = false;
+        health = GameObject.Find("GameController").GetComponent<Health>();
     }
 
 
