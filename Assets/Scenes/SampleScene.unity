@@ -6382,7 +6382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926601358}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 24.541, y: 0.404, z: 7.2}
+  m_LocalPosition: {x: 22.2, y: 0.404, z: 7.2}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -6411,6 +6411,7 @@ MonoBehaviour:
   babyIdx: 1
   state: 
   mission: 
+  home: {x: 22.2, y: 0.404, z: 7.2}
 --- !u!95 &926601363
 Animator:
   serializedVersion: 4

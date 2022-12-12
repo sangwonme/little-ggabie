@@ -19,29 +19,13 @@ public class MissionController : MonoBehaviour
     private int babyIdx;
     private Color color;
 
-    public void initMission(){
-        steRandomBaby();
+    public void initMission(int idx){
+        setBabyIdx(idx);
         setRandomMission();
-    }
-    public void steRandomBaby(){
-        float tmp = Random.Range(0, 1.0f); // TODO : change 1.0 -> 3.0
-        if(tmp < 1.0f){
-            babyIdx = 1;
-            ColorUtility.TryParseHtmlString("#4BCAE0", out color);
-        }else if(tmp < 2.0f){
-            babyIdx = 2;
-            ColorUtility.TryParseHtmlString("#E0D54B", out color);
-        }else{
-            babyIdx = 3;
-            ColorUtility.TryParseHtmlString("#4BE060", out color);
-        }
-        timeBarColor.color = color;
-        idxColor.color = color;
-        setMissionType();
     }
 
     public void setRandomMission(){
-        float tmp = Random.Range(1.0f, 2.0f);
+        float tmp = Random.Range(0.0f, 3.0f);
         if(tmp < 1.0f){
             missionType = "eat";
         }else if(tmp < 2.0f){
@@ -71,7 +55,21 @@ public class MissionController : MonoBehaviour
     }
 
     public void setBabyIdx(int idx){
+        Debug.Log(idx);
         babyIdx = idx;
+        switch(idx){
+            case 1:
+                ColorUtility.TryParseHtmlString("#4BCAE0", out color);
+                break;
+            case 2:
+                ColorUtility.TryParseHtmlString("#E0D54B", out color);
+                break;
+            case 3:
+                ColorUtility.TryParseHtmlString("#4BE060", out color);
+                break;
+        }
+        timeBarColor.color = color;
+        idxColor.color = color;
     }
 
     public int getBabyIdx(){

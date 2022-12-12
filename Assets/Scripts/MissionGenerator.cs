@@ -11,7 +11,7 @@ public class MissionGenerator : MonoBehaviour
     private float coolTime;
 
     private float timeCount;
-
+    
 
     // return priory mission of given baby, if doesn't exist return "none"
     public string getPrioryMission(int babyIdx){
@@ -31,11 +31,26 @@ public class MissionGenerator : MonoBehaviour
         coolTime = Random.Range(coolTimeRange.x, coolTimeRange.y);
     }
 
+    // check which baby has no mission
     private void giveNewMission(){
-        Instantiate(missionPrefab, new Vector3(0,0,0), Quaternion.identity, transform);
-        getAllMissions();
-        missions[missions.Length-5].GetComponent<MissionController>().initMission();
-        updateMissionPos();
+        // tmp dir, tmp i = baby direction, start baby idx
+        int tmpi = 3 + (int)Random.Range(1, 4);
+        int tmpdir = Random.Range(0, 1.0f) < 0.5f ? -1 : 1;
+        for(int i = 0; i < 3; i ++){
+            int idx = tmpi % 3 + 1;
+            if(getPrioryMission(idx) == "none"){
+                // add mission
+                Instantiate(missionPrefab, new Vector3(0,0,0), Quaternion.identity, transform);
+                getAllMissions();
+                missions[missions.Length-5].GetComponent<MissionController>().initMission(idx);
+                updateMissionPos();
+                return;
+            }else{
+                tmpi += tmpdir;
+            }
+        }
+
+
     }
 
     private void getAllMissions(){
@@ -79,9 +94,7 @@ public class MissionGenerator : MonoBehaviour
         // make new mission
         if(timeCount > coolTime){
             resetCoolTime();
-            if(missionNum < 9){
-                giveNewMission();
-            }
+            giveNewMission();
         }
     }
 }
