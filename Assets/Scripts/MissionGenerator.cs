@@ -13,6 +13,16 @@ public class MissionGenerator : MonoBehaviour
     private float timeCount;
     
 
+    public void clearMissionOfBaby(int babyIdx){
+        for(int i = 0; i < missions.Length; i++){
+            if(missions[i].tag == "Mission"){
+                if(missions[i].GetComponent<MissionController>().getBabyIdx() == babyIdx){
+                    missions[i].GetComponent<MissionController>().clearMission();
+                }
+            }
+        }
+    }
+
     // return priory mission of given baby, if doesn't exist return "none"
     public string getPrioryMission(int babyIdx){
         getAllMissions();

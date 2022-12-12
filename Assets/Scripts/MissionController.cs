@@ -19,13 +19,17 @@ public class MissionController : MonoBehaviour
     private int babyIdx;
     private Color color;
 
+    public void clearMission(){
+        Destroy(gameObject);
+    }
+
     public void initMission(int idx){
         setBabyIdx(idx);
         setRandomMission();
     }
 
     public void setRandomMission(){
-        float tmp = Random.Range(0.0f, 3.0f);
+        float tmp = Random.Range(1.0f, 2.0f);
         if(tmp < 1.0f){
             missionType = "eat";
         }else if(tmp < 2.0f){

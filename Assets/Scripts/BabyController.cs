@@ -44,8 +44,13 @@ public class BabyController : MonoBehaviour
                 state = "cry";
                 break;
             case "play":
+                // set hold time to 0 if baby is not playing
                 if(state != "play") timeCount = 0.0f;
+                // if baby is at playground -> state = play / mission clear
                 state = player.GetComponent<PlayerController>().getPlace()=="playground" ? "play" : "idle";
+                if(state == "play"){
+                    missionGenerator.clearMissionOfBaby(babyIdx);
+                }
                 break;
         }
     }
